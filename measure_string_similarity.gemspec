@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.description   = "This gem is used to get a similarity value from comparing two strings."
   s.authors       = ["Drew Smith"]
   s.email         = ['drewsmith91@gmail.com']
-  s.files         = `git ls-files -z`.split("\x0")
+  s.files         = `git ls-files`.split($/)
   s.homepage      = 'http://rubygems.org/gems/measure_string_similarity'
   s.license       = 'Shiplify'
 
