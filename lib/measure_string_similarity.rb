@@ -1,9 +1,9 @@
-require 'measure_string_similarity/q_gram'
 module MeasureStringSimilarity
-  VERSION = "0.0.2"
+  VERSION = "0.0.11"
+  require 'measure_string_similarity/q_gram'
   if defined? ::Rails::Engine
-    require "angularjs-rails/engine"
+    require "measure_string_similarity/engine"
   elsif defined? Sprockets
-    require "angularjs-rails/sprockets"
+    require "measure_string_similarity/sprockets"
   end
 end

@@ -1,14 +1,18 @@
 PATH
   remote: .
   specs:
-    measure_string_similarity (0.0.1)
+    measure_string_similarity (0.0.11)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    blockenspiel (0.5.0)
     coderay (1.1.1)
     diff-lcs (1.2.5)
     method_source (0.8.2)
+    mini_portile2 (2.0.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -28,6 +32,8 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     slop (3.6.0)
+    versionomy (0.5.0)
+      blockenspiel (~> 0.5)
 
 PLATFORMS
   ruby
@@ -35,9 +41,11 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.6)
   measure_string_similarity!
+  nokogiri
   pry
   rake
   rspec
+  versionomy
 
 BUNDLED WITH
    1.11.2
