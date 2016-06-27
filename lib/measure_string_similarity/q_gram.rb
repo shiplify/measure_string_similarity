@@ -39,7 +39,7 @@ module MeasureStringSimilarity
     end
 
     def dice_value(s1_array, s2_array)
-      average_count = (s1_array.length + s2_array.length) / 2
+      average_count = (s1_array.length + s2_array.length).to_f / 2
       similarity_count = (s1_array & s2_array).size
 
       similarity_count.to_f / average_count

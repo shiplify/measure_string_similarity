@@ -1,23 +1,7 @@
-require 'spec_helper'
-
-RSpec.describe MeasureStringSimilarity::QGram do
-  it 'initailizes a new object' do
-    comparer = MeasureStringSimilarity::QGram.new
-  end
-
-  describe "expect QGram default " do
-    it 'q to equal 3' do
-      comparer = MeasureStringSimilarity::QGram.new
-      expect(comparer.q).to eq(3)
-    end
-
-    it 'metric to equal dice' do
-      comparer = MeasureStringSimilarity::QGram.new
-      expect(comparer.metric).to eq('dice')
-    end
-  end
-  [
-    #     s1                   s2                           value                options
+describe 'QGram', ->
+  beforeEach module('measureStringSimilarity')
+  for test_case in [
+    #     s1                   s2                           expected                options
     [ 'P. Joostenstraat',      'P. Joostenstraat',           1.0 ,          {q: 3, metric: 'jaccard'}],
     [ 'P. Joostenstraat',      'P. Joostenstraat',           1.0 ,          {q: 2, metric: 'jaccard'}],
     [ 'P. Joostenstraat',      'P. Joostenstraat',           1.0 ,          {q: 3, metric: 'dice'}],
@@ -33,12 +17,9 @@ RSpec.describe MeasureStringSimilarity::QGram do
     [ '4380 CARMAN DRIVE',     '4380 CARMAIN DR',            0.71,           {q: 3, metric: 'jaccard'}],
     [ '5340 CARMAIN DR',       '4380 CARMAIN DR',            0.67,           {q: 3, metric: 'jaccard'}],
     [ '5340 CARMAIN DR',       '4380 CARMAIN DR',            0.67,           {q: 3, metric: 'dice'}],
-  ].each do |test_case|
-    s1, s2, value, options = test_case
-    it "QGram returns #{value} for #{s1}, #{s2} when q is #{options[:q]} and metric is #{options[:metric]}" do
-      comparer = MeasureStringSimilarity::QGram.new(options)
-      result = comparer.compare(s1,s2)
-      expect(result.round(2)).to eq(value)
-    end
-  end
-end
+  ]
+    describe 'q-grams', ->
+      [s1, s2, expected, options] = test_case
+      it "returns #{expected} for #{s1} and #{s2} with q = #{options['q']} and metric = #{options['metric']}", ->
+        actual = QGram.calculate(s1, s2, options)
+        expect(actual).toEqual expected

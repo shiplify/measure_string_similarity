@@ -11,6 +11,6 @@ describe 'LevenshteinDistance', ->
       [geocoded, expected] = some_text
       source = '111 3rd St'
       it "calculates similarity properly", ->
-        actual = LevenshteinDistance(source, geocoded)
+        actual = LevenshteinDistance.calculate(source, geocoded)
         expect(actual).toEqual expected
 
