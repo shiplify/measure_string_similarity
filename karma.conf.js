@@ -17,6 +17,7 @@ module.exports = function(config) {
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'vendor/assets/javascripts/measure-string-similarity.js',
       'vendor/assets/javascripts/*.js',
       'vendor/assets/javascripts/*.coffee',
       'spec/javascripts/*_spec.js',

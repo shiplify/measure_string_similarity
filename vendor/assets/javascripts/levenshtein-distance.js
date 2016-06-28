@@ -1,10 +1,8 @@
-var LevenshteinDistance, app;
+var myApp = angular.module('measureStringSimilarity')
 
-app = angular.module('measureStringSimilarity', []);
-
-LevenshteinDistance = ( function() {
-  return {
-    calculate: function(a, b) {
+//service style, probably the simplest one
+myApp.service('levenshteinDistance', function() {
+    this.calculate = function(a, b) {
       var edits, i, j, matrix, calculate;
       if (a === b) {
         return 1.0;
@@ -41,6 +39,5 @@ LevenshteinDistance = ( function() {
       }
       edits = matrix[b.length][a.length];
       return Math.round((1 - (edits / (a.length + b.length))) * 100) / 100;
-    }
-  };
-})();
+    };
+});

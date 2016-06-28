@@ -1,37 +1,34 @@
-var QGram, app
-app = angular.module('measureStringSimilarity', []);
-QGram = function(a, b, q, metric) {
-}
+var myApp = angular.module('measureStringSimilarity')
 
-QGram = ( function() {
-  var gramify = function(string, q) {
-    var gram_array = []
-    var padding = Array.apply(null, Array(q-1)).map(function () { return '_'; })
-    var character_array = padding.concat(string.split(''))
-    return each_cons(character_array, q).filter( onlyUnique )
-  };
-  var range = function (a, i, n) {
-    var r = []
-    for (var j = 0; j < n; j++) {
-      r.push(a[i + j])
-    }
-    return r
-  };
+//service style, probably the simplest one
+myApp.service('qGram', function() {
+    var gramify = function(string, q) {
+      var gram_array = []
+      var padding = Array.apply(null, Array(q-1)).map(function () { return '_'; })
+      var character_array = padding.concat(string.split(''))
+      return each_cons(character_array, q).filter( onlyUnique )
+    };
+    var range = function (a, i, n) {
+      var r = []
+      for (var j = 0; j < n; j++) {
+        r.push(a[i + j])
+      }
+      return r
+    };
 
-  var each_cons = function (a, n) {
-    var r = []
-    for (var i = 0; i < a.length - n + 1; i++) {
-      r.push(range(a, i, n).join(''))
-    }
-    return r
-  };
+    var each_cons = function (a, n) {
+      var r = []
+      for (var i = 0; i < a.length - n + 1; i++) {
+        r.push(range(a, i, n).join(''))
+      }
+      return r
+    };
 
-  var onlyUnique = function (value, index, self) {
-    return self.indexOf(value) === index;
-  };
+    var onlyUnique = function (value, index, self) {
+      return self.indexOf(value) === index;
+    };
 
-  return {
-    calculate: function (a, b, options) {
+    this.calculate = function(a, b, options) {
       options = typeof options !== 'undefined' ? options : {}
       q = options['q'] || 3
       metric = options['metric'] || 'dice'
@@ -62,7 +59,6 @@ QGram = ( function() {
           break;
       }
       return Math.round((similarity_count / denominator)*100)/100
-    }
-  };
-})();
+    };
+});
 

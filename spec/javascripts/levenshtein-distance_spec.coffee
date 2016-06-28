@@ -1,5 +1,9 @@
 describe 'LevenshteinDistance', ->
   beforeEach module('measureStringSimilarity')
+  levenshteinDistance = null
+
+  beforeEach inject (_levenshteinDistance_) ->
+    levenshteinDistance = _levenshteinDistance_
   for some_text in [
     ['111 3rd St', 1.0],
     ['111 Third St', 0.86],
@@ -11,6 +15,6 @@ describe 'LevenshteinDistance', ->
       [geocoded, expected] = some_text
       source = '111 3rd St'
       it "calculates similarity properly", ->
-        actual = LevenshteinDistance.calculate(source, geocoded)
+        actual = levenshteinDistance.calculate(source, geocoded)
         expect(actual).toEqual expected
 

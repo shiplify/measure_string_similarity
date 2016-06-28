@@ -1,5 +1,9 @@
 describe 'QGram', ->
   beforeEach module('measureStringSimilarity')
+  qGram = null
+
+  beforeEach inject (_qGram_) ->
+    qGram = _qGram_
   for test_case in [
     #     s1                   s2                           expected                options
     [ 'P. Joostenstraat',      'P. Joostenstraat',           1.0 ,          {q: 3, metric: 'jaccard'}],
@@ -22,5 +26,5 @@ describe 'QGram', ->
     describe 'q-grams', ->
       [s1, s2, expected, options] = test_case
       it "returns #{expected} for #{s1} and #{s2}", ->
-        actual = QGram.calculate(s1, s2, options)
+        actual = qGram.calculate(s1, s2, options)
         expect(actual).toEqual expected
