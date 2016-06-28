@@ -30,12 +30,13 @@ RSpec.describe MeasureStringSimilarity::QGram do
     [ '734 DELTA DR BLDG 710', '734 DELTA DR',               1.0,          {q: 2, metric: 'overlap'}],
     [ '734 DELTA DR BLDG 710', '734 DELTA DR',               0.71,          {q: 2, metric: 'dice'}],
     [ '4380 CARMAN DRIVE',     '4380 CARMAIN DR',            0.75,           {q: 3, metric: 'dice'}],
+    [ '4380 CARMAN DRIVE',     '4380 CARMAIN DR',            0.75],
     [ '4380 CARMAN DRIVE',     '4380 CARMAIN DR',            0.71,           {q: 3, metric: 'jaccard'}],
     [ '5340 CARMAIN DR',       '4380 CARMAIN DR',            0.67,           {q: 3, metric: 'jaccard'}],
     [ '5340 CARMAIN DR',       '4380 CARMAIN DR',            0.67,           {q: 3, metric: 'dice'}],
   ].each do |test_case|
     s1, s2, value, options = test_case
-    it "QGram returns #{value} for #{s1}, #{s2} when q is #{options[:q]} and metric is #{options[:metric]}" do
+    it "QGram returns #{value} for #{s1}, #{s2}" do
       comparer = MeasureStringSimilarity::QGram.new(options)
       result = comparer.compare(s1,s2)
       expect(result.round(2)).to eq(value)

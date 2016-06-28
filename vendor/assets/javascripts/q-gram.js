@@ -31,7 +31,8 @@ QGram = ( function() {
   };
 
   return {
-    calculate: function(a, b, options) {
+    calculate: function (a, b, options) {
+      options = typeof options !== 'undefined' ? options : {}
       q = options['q'] || 3
       metric = options['metric'] || 'dice'
       if (a === b) {

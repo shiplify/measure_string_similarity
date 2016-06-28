@@ -4,8 +4,9 @@ module MeasureStringSimilarity
     attr_reader :q, :metric
 
     def initialize(options = {})
-      @q = options[:q] || 3
-      @metric = options[:metric] || 'dice'
+      options = options || {}
+      @q = options.has_key?(:q) && options[:q] ||  3
+      @metric = options.has_key?(:metric) && options[:metric] || 'dice'
     end
 
     def compare(s1, s2)
