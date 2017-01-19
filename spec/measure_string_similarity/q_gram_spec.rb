@@ -18,6 +18,9 @@ RSpec.describe MeasureStringSimilarity::QGram do
   end
   [
     #     s1                   s2                           value                options
+    [ nil,                     'P. Joostenstraat',           0.0 ,          {q: 3, metric: 'jaccard'}],
+    [ 'P. Joostenstraat',      nil,                          0.0 ,          {q: 3, metric: 'jaccard'}],
+    [ nil,                     nil,                          1.0 ,          {q: 3, metric: 'jaccard'}],
     [ 'P. Joostenstraat',      'P. Joostenstraat',           1.0 ,          {q: 3, metric: 'jaccard'}],
     [ 'P. Joostenstraat',      'P. Joostenstraat',           1.0 ,          {q: 2, metric: 'jaccard'}],
     [ 'P. Joostenstraat',      'P. Joostenstraat',           1.0 ,          {q: 3, metric: 'dice'}],

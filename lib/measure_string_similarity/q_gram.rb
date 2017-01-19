@@ -16,6 +16,9 @@ module MeasureStringSimilarity
     private
 
     def _qgrams(s1, s2, q, measure)
+      return 1.0 if !s1 && !s2
+      return 0.0 if !s1 || !s2
+
       s1_gram_array = _gramify(s1, q)
       s2_gram_array = _gramify(s2, q)
 

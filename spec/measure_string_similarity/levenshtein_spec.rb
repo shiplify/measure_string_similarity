@@ -14,6 +14,9 @@ RSpec.describe MeasureStringSimilarity::Levenshtein do
 
   [
     # string 1          string 2            value     options
+    [ nil,              '123 Main St',      0.0,      {} ],
+    [ '123 Main St',    nil,                0.0,      {} ],
+    [ nil,              nil,                1.0,      {} ],
     [ '123 Main St',    '123 Main St',      1.0,      {} ],
     [ '123 Main St',    '423 Main St',      0.91,     {} ],
     [ '123 Main St',    '143 Main St',      0.91,     {} ],

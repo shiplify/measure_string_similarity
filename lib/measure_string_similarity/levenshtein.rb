@@ -8,6 +8,8 @@ module MeasureStringSimilarity
     end
 
     def compare(a, b)
+      return 1.0 if !a && !b
+      return 0.0 if !a || !b
       return 1.0 if a == b
       return 1.0 if a.length == 0
       return 1.0 if b.length == 0

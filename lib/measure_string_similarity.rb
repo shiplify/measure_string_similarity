@@ -1,5 +1,5 @@
 module MeasureStringSimilarity
-  VERSION = "0.0.14"
+  VERSION = "0.0.15"
   require 'measure_string_similarity/q_gram'
   require 'measure_string_similarity/levenshtein'
   if defined? ::Rails::Engine
