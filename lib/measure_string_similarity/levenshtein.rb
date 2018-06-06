@@ -11,8 +11,6 @@ module MeasureStringSimilarity
       return 1.0 if !a && !b
       return 0.0 if !a || !b
       return 1.0 if a == b
-      return 1.0 if a.length == 0
-      return 1.0 if b.length == 0
 
       matrix = []
       i = 0
@@ -48,7 +46,8 @@ module MeasureStringSimilarity
       end
       edits = matrix[b.length][a.length]
       denominator = send("#{@metric}_value", a, b)
-      (1.0 - (edits.to_f / denominator.to_f))
+      val = (1.0 - (edits.to_f / denominator.to_f))
+      [ val, 0.0 ].max
     end
 
     private
