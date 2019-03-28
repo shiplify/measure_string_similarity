@@ -7,45 +7,41 @@ module MeasureStringSimilarity
       @metric = options.has_key?(:metric) && options[:metric] || 'dice'
     end
 
+    # From https://rosettacode.org/wiki/Levenshtein_distance#Ruby
     def compare(a, b)
-      return 1.0 if !a && !b
-      return 0.0 if !a || !b
-      return 1.0 if a == b
+      str1 = a&.downcase
+      str2 = b&.downcase
+      return 1.0 if !str1 && !str2
+      return 0.0 if str1.nil? || str2.nil?
+      return 0.0 if str1.empty? || str2.empty?
 
-      matrix = []
-      i = 0
-      while i <= b.length do
-        matrix[i] = [i]
-        i = i + 1
-      end
+      d = (0..str2.length).to_a
+      edits = nil
 
-      j = 0
-      while j <= a.length do
-        matrix[0][j] = j
-        j = j + 1
-      end
+      str1.each_char.with_index do |char1, i|
+        e = i+1
 
-      i = 1
-      while i <= b.length do
-        j = 1
-        while j <= a.length do
-          if b[i - 1] == a[j - 1]
-            matrix[i][j] = matrix[i - 1][j - 1]
-          else
-            matrix[i][j] = [
-              matrix[i - 1][j - 1] + 1,
-              [
-                matrix[i][j - 1] + 1,
-                matrix[i - 1][j] + 1
-              ].min
-            ].min
-          end
-          j = j + 1
+        str2.each_char.with_index do |char2, j|
+          substitution_cost = (char1 == char2) ? 0 : 1
+          edits = [
+            d[j+1] + 1, # insertion
+            e + 1, # deletion
+            d[j] + substitution_cost # substitution
+          ].min
+#           puts <<-TXT
+# i=#{i}, j=#{j}, char1=#{char1}, char2=#{char2}
+#   d = #{d.inspect}
+#   edits = #{edits}
+#   #{[(edits == d[j] && "no change"), (edits == d[j+1]+1 && "insertion"), (edits == e+1 && "deletion"), (edits == d[j]+substitution_cost && "substitution")].reject {|v| !v }.join(' || ')}
+# TXT
+          d[j] = e
+          e = edits
         end
-        i = i + 1
+
+        d[str2.length] = edits
       end
-      edits = matrix[b.length][a.length]
-      denominator = send("#{@metric}_value", a, b)
+
+      denominator = send("#{@metric}_value", str1, str2)
       val = (1.0 - (edits.to_f / denominator.to_f))
       [ val, 0.0 ].max
     end

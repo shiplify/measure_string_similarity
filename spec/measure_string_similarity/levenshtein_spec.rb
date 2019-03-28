@@ -18,6 +18,7 @@ RSpec.describe MeasureStringSimilarity::Levenshtein do
     [ '123 Main St',    nil,                0.0,      {} ],
     [ nil,              nil,                1.0,      {} ],
     [ '123 Main St',    '123 Main St',      1.0,      {} ],
+    [ '123 Main St',    '123 MAIN ST',      1.0,      {} ],
     [ '123 Main St',    '423 Main St',      0.91,     {} ],
     [ '123 Main St',    '143 Main St',      0.91,     {} ],
     [ '123 Main St',    '124 Main St',      0.91,     {} ],
@@ -25,6 +26,7 @@ RSpec.describe MeasureStringSimilarity::Levenshtein do
     [ '1234 Main St',   '123 Main St',      0.91,     {} ],
     [ '123 Main St',    '',                 0.0,      {} ],
     [ '',               '123 Main St',      0.0,      {} ],
+    [ '123 Main St',    '1234 Foobar St',   0.44,     {} ],
     [ '123 Main St',    '123 Main St',      1.0,      { metric: 'jaccard' } ],
     [ '123 Main St',    '123 Main St NW',   0.79,     { metric: 'jaccard' } ],
     [ '123 Main St',    '',                 0.0,      { metric: 'jaccard' } ],
@@ -43,3 +45,4 @@ RSpec.describe MeasureStringSimilarity::Levenshtein do
     end
   end
 end
+
