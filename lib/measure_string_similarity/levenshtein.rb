@@ -1,10 +1,11 @@
 module MeasureStringSimilarity
   class Levenshtein
-    attr_reader :q, :metric
+    attr_reader :q, :metric, :costs
 
     def initialize(options = {})
       options = options || {}
       @metric = options.has_key?(:metric) && options[:metric] || 'dice'
+      @costs = options.has_key?(:costs) && options[:costs] || {}
     end
 
     # From https://rosettacode.org/wiki/Levenshtein_distance#Ruby
@@ -22,7 +23,12 @@ module MeasureStringSimilarity
         e = i+1
 
         str2.each_char.with_index do |char2, j|
-          substitution_cost = (char1 == char2) ? 0 : 1
+          substitution_cost = if char1 == char2
+            0
+          else
+            @costs[char1] && @costs[char1][char2] || 1
+          end
+
           edits = [
             d[j+1] + 1, # insertion
             e + 1, # deletion

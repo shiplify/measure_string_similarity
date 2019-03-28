@@ -1,7 +1,10 @@
 module MeasureStringSimilarity
   VERSION = "0.0.15"
+
   require 'measure_string_similarity/q_gram'
   require 'measure_string_similarity/levenshtein'
+  require 'measure_string_similarity/keyboard'
+
   if defined? ::Rails::Engine
     require "measure_string_similarity/engine"
   elsif defined? Sprockets
