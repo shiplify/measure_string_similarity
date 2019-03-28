@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    measure_string_similarity (0.1.0)
+    measure_string_similarity (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -65,7 +65,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.6)
   measure_string_similarity!
-  nokogiri (~> 1.8.2)
+  nokogiri (~> 1.8.5)
   poltergeist
   pry
   rake
