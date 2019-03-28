@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 gemspec
 
-gem 'pry'
-gem 'poltergeist'
+group :test do
+  gem 'pry'
+  gem 'poltergeist'
+end
 
