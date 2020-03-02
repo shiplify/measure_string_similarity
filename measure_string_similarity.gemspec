@@ -3,8 +3,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = 'measure_string_similarity'
-  s.version       = '0.2.1'
-  s.date          = '2019-08-20'
+  s.version       = '0.3.0'
+  s.date          = '2020-03-02'
   s.summary       = 'Use to measure string similarity using different distance measures and similarity measures.'
   s.description   = 'This gem is used to get a similarity value from comparing two strings.'
   s.authors       = ['Drew Smith', 'Jason Ardell']
