@@ -63,7 +63,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.6)
+  bundler (~> 2)
   measure_string_similarity!
   nokogiri (>= 1.10.4)
   poltergeist
@@ -73,4 +73,4 @@ DEPENDENCIES
   versionomy
 
 BUNDLED WITH
-   1.17.3
+   2.1.4
