@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    measure_string_similarity (0.4.1)
+    measure_string_similarity (0.4.2)
 
 GEM
   remote: https://rubygems.org/
@@ -75,4 +75,4 @@ DEPENDENCIES
   versionomy
 
 BUNDLED WITH
-   2.2.6
+   2.2.33
