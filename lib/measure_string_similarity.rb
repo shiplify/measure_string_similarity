@@ -1,5 +1,5 @@
 module MeasureStringSimilarity
-  VERSION = '0.4.2'
+  VERSION = '0.4.3'
 
   require 'measure_string_similarity/q_gram'
   require 'measure_string_similarity/levenshtein'
