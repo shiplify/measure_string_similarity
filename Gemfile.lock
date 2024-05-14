@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    measure_string_similarity (0.4.13)
+    measure_string_similarity (0.4.14)
 
 GEM
   remote: https://rubygems.org/
