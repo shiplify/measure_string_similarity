@@ -1,0 +1,26 @@
+name: ci
+on:
+  workflow_dispatch:
+  pull_request:
+  merge_group:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2 - https://github.com/actions/checkout/releases/tag/v6.0.2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0 - https://github.com/ruby/setup-ruby/releases/tag/v1.310.0
+        with:
+          bundler-cache: true
+
+      - name: RSpec
+        run: bundle exec rspec
