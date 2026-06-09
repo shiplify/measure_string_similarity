@@ -1,0 +1,13 @@
+name: verify_commit_signatures
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  verify-signatures:
+    uses: shiplify/.github/.github/workflows/verify_commit_signatures.yml@f5bea5a78720323aa9e9cbcaadc275957998cb36 # https://github.com/shiplify/.github/pull/15
+    with:
+      runs-on: ubuntu-latest
