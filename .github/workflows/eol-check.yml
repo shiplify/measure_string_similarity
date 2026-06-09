@@ -1,0 +1,21 @@
+name: EOL Check
+# Inlined (not a `uses:` of shiplify/.github/actions/eol-check) because this
+# repo is PUBLIC and a public repo cannot use a private action. The vendored
+# .github/eol_check.rb is a verbatim copy of the shared action's script
+# (stdlib-only, runs on preinstalled Ruby). Keep it in sync with
+# shiplify/.github/actions/eol-check when that updates.
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  eol-check:
+    name: Check EOL Status
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2 - https://github.com/actions/checkout/releases/tag/v6.0.2
+      - name: Run EOL check
+        run: ruby .github/eol_check.rb --config .github/eol-check.yml
